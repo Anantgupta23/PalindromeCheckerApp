@@ -1,24 +1,20 @@
-import java.util.Stack;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 public class PalindromeCheckerApp {
     public static void main(String[] args) {
         String originalString = "madam";
 
-        Stack<Character> stack = new Stack<>();
-        Queue<Character> queue = new LinkedList<>();
+        Deque<Character> deque = new ArrayDeque<>();
 
         for (int i = 0; i < originalString.length(); i++) {
-            char c = originalString.charAt(i);
-            stack.push(c);
-            queue.add(c);
+            deque.add(originalString.charAt(i));
         }
 
         boolean isPalindrome = true;
 
-        while (!stack.isEmpty() && !queue.isEmpty()) {
-            if (!stack.pop().equals(queue.remove())) {
+        while (deque.size() > 1) {
+            if (!deque.removeFirst().equals(deque.removeLast())) {
                 isPalindrome = false;
                 break;
             }
@@ -30,6 +26,7 @@ public class PalindromeCheckerApp {
             System.out.println(originalString + " is a palindrome.");
         } else {
             System.out.println(originalString + " is not a palindrome.");
+        }
         }
     }
 }
